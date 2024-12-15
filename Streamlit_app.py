@@ -7,6 +7,15 @@ import warnings
 failure_model = pickle.load(open("Machine Failure.pkl", 'rb'))
 failure_type_model = pickle.load(open("failure_type_model.pkl", 'rb'))
 
+# Dictionary for failure type abbreviations and their full forms
+failure_type_full_forms = {
+    "TWF": "Tool Wear Failure",
+    "HDF": "Heat Dissipation Failure",
+    "PWF": "Power Failure",
+    "OSF": "Overstrain Failure",
+    "RNF": "Random Failure"
+}
+
 def predict_failure_and_type(input_data):
     try:
         # Convert input_data to float and reshape
@@ -17,7 +26,7 @@ def predict_failure_and_type(input_data):
 
         # Predict failure type if machine failure is predicted
         if failure_prediction[0] == 1:
-            failure_type = failure_type_model.predict(input_data_as_numpy_array)
+            failure_type = failure_type_model.predict(input_data_as_numpy_array)[0]
         else:
             failure_type = "No Failure"
 
@@ -54,8 +63,6 @@ def main():
     st.title('Machine Failure Prediction Web App')
 
     # Collect input data from the user
-
-    # Getting the input data from the user
     col1, col2 = st.columns(2)
 
     input_field_names = [
@@ -92,7 +99,10 @@ def main():
                 prediction_error_message = f"Error during prediction: {prediction_error}"
             else:
                 failure_prediction_result = f"Machine Failure Prediction: {'Yes' if failure_prediction == 1 else 'No'}"
-                failure_type_result = f"Predicted Failure Type: {failure_type}"
+                if failure_type in failure_type_full_forms:
+                    failure_type_result = f"Predicted Failure Type: {failure_type_full_forms[failure_type]}"
+                else:
+                    failure_type_result = f"Predicted Failure Type: {failure_type}"
 
     # Display the results or error messages in the Streamlit app
     if error_messages:
@@ -107,7 +117,10 @@ def main():
         if failure_type_result:
             st.success(failure_type_result)
 
+    # Display failure type abbreviations and full forms
+    st.write("### Failure Type Abbreviations and Full Forms")
+    for abbrev, full_form in failure_type_full_forms.items():
+        st.write(f"**{abbrev}**: {full_form}")
+
 if __name__ == '__main__':
     main()
-
-
