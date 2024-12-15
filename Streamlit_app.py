@@ -20,7 +20,7 @@ failure_type_full_forms = {
 type_full_forms = {
     0: "Light weight Type",
     1: "Medium Weight Type",
-    2: "Heavy duty operations type"
+    2: "Heavy duty operations Type"
 }
 
 def predict_failure_and_type(input_data):
