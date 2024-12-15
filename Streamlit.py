@@ -67,7 +67,7 @@ def main():
 
     for i, field_name in enumerate(input_field_names):
         with col1 if i % 2 == 0 else col2:
-            input_data[field_name] = st.text_input(f"{i+1}. {field_name} value")
+            input_data[field_name] = st.number_input(f"{i+1}. {field_name} value", min_value=0.0, format="%.2f")
 
     # Create placeholders for displaying the results and error messages
     failure_prediction_result = ""
@@ -95,15 +95,19 @@ def main():
                 failure_type_result = f"Predicted Failure Type: {failure_type}"
 
     # Display the results or error messages in the Streamlit app
-    for field_name, error_message in error_messages.items():
-        st.error(f"{field_name}: {error_message}")
+    if error_messages:
+        for field_name, error_message in error_messages.items():
+            st.error(f"{field_name}: {error_message}")
 
     if prediction_error_message:
         st.error(prediction_error_message)
     else:
-        st.success(failure_prediction_result)
-        st.success(failure_type_result)
+        if failure_prediction_result:
+            st.success(failure_prediction_result)
+        if failure_type_result:
+            st.success(failure_type_result)
 
 if __name__ == '__main__':
     main()
+
 
