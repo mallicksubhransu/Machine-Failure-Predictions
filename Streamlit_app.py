@@ -16,6 +16,13 @@ failure_type_full_forms = {
     "RNF": "Random Failure"
 }
 
+# Dictionary for type column full forms
+type_full_forms = {
+    0: "Light weight Type",
+    1: "Medium Weight Type",
+    2: "Heavy duty operations type"
+}
+
 def predict_failure_and_type(input_data):
     try:
         # Convert input_data to float and reshape
@@ -46,7 +53,7 @@ def validate_input(input_data):
     for i, val in enumerate(input_data):
         field_name = input_field_names[i]
 
-        if not val:
+        if val is None:
             error_messages[field_name] = f"{field_name} is missing."
         else:
             try:
@@ -72,9 +79,14 @@ def main():
 
     input_data = {}
 
-    for i, field_name in enumerate(input_field_names):
+    # Add dropdown for Type field
+    with col1:
+        input_data['Type'] = st.selectbox("1. Type", options=list(type_full_forms.keys()), format_func=lambda x: type_full_forms[x])
+
+    # Add number inputs for the remaining fields
+    for i, field_name in enumerate(input_field_names[1:], start=2):
         with col1 if i % 2 == 0 else col2:
-            input_data[field_name] = st.number_input(f"{i+1}. {field_name} value", min_value=0.0, format="%.2f")
+            input_data[field_name] = st.number_input(f"{i}. {field_name} value", min_value=0.0, format="%.2f")
 
     # Create placeholders for displaying the results and error messages
     failure_prediction_result = ""
@@ -121,6 +133,11 @@ def main():
     st.write("### Failure Type Abbreviations and Full Forms")
     for abbrev, full_form in failure_type_full_forms.items():
         st.write(f"**{abbrev}**: {full_form}")
+
+    # Display Type column descriptions
+    st.write("### Type Column Descriptions")
+    for key, description in type_full_forms.items():
+        st.write(f"**{key}**: {description}")
 
 if __name__ == '__main__':
     main()
