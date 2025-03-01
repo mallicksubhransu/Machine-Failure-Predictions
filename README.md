@@ -11,8 +11,8 @@ This project explores the application of machine learning techniques for predict
 - **Failure Classification**: Implementing a secondary model for classifying different failure types.
 
 ## Dataset
-The **AI4I 2020 Predictive Maintenance Dataset** consists of operational data for industrial machinery, including features such as temperature, pressure, rotational speed, and tool wear. The dataset is used to train models for predicting machine failures.
-https://machine-failure-predictions-k97ubkemlqvwzm8rtax4op.streamlit.app/
+The **AI4I 2020 Predictive Maintenance Dataset** consists of operational data for industrial machinery, including features such as temperature, pressure, rotational speed, and tool wear. The dataset is used to train models for predicting machine failures.https://archive.ics.uci.edu/dataset/601/ai4i+2020+predictive+maintenance+dataset
+
 
 ## Technologies Used
 - **Python**
@@ -49,6 +49,8 @@ pip install -r requirements.txt
 ## Results & Insights
 This project demonstrates the potential of AI-driven solutions in predictive maintenance, providing insights for real-world applications in industries reliant on machine uptime and performance. The project highlighted the potential of predictive maintenance in reducing downtime, optimizing resource utilization, and enhancing operational efficiency. Despite its success, the project faced challenges such as imbalanced datasets and limitations in predicting minority classes, which provided valuable learning opportunities.
 
+## Web Application
+https://machine-failure-predictions-k97ubkemlqvwzm8rtax4op.streamlit.app/
 ## Contributing
 Contributions are welcome! Feel free to fork the repository and submit a pull request.
 
