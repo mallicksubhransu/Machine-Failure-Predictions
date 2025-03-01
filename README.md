@@ -1,4 +1,4 @@
-# Predictive Maintenance using Machine Learning
+# Machine Failure Predictions
 
 ## Overview
 This project explores the application of machine learning techniques for predicting machine failures to enhance reliability and maintenance strategies. Using the AI4I 2020 Predictive Maintenance Dataset, we developed and optimized a machine learning model to improve industrial equipment uptime and performance. The project, "AI-Driven Approach for Machine Failure Prediction," successfully demonstrated the integration of advanced machine learning techniques with real-world industrial applications. By utilizing the AI4I 2020 Predictive Maintenance Dataset, the team developed a robust model that effectively predicts machine failures and identifies specific failure types.
@@ -27,7 +27,7 @@ The **AI4I 2020 Predictive Maintenance Dataset** consists of operational data fo
 ```sh
 # Clone the repository
 git clone https://github.com/mallicksubhransu/Machine-Failure-Predictions.git
-cd predictive-maintenance
+cd Machine-Failure-Predictions
 
 # Install dependencies
 pip install -r requirements.txt
