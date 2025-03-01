@@ -47,14 +47,14 @@ pip install -r requirements.txt
 - Developed a secondary model for classifying different failure types.
 
 ## Results & Insights
-This project demonstrates the potential of AI-driven solutions in predictive maintenance, providing insights for real-world applications in industries reliant on machine uptime and performance. The project highlighted the potential of predictive maintenance in reducing downtime, optimizing resource utilization, and enhancing operational efficiency. Despite its success, the project faced challenges such as imbalanced datasets and limitations in predicting minority classes, which provided valuable learning opportunities.
+The project highlighted the potential of predictive maintenance in reducing downtime, optimizing resource utilization, and enhancing operational efficiency. Despite its success, the project faced challenges such as imbalanced datasets and limitations in predicting minority classes, which provided valuable learning opportunities.
 
 ## Web Application
 https://machine-failure-predictions-k97ubkemlqvwzm8rtax4op.streamlit.app/
+
 ## Contributing
 Contributions are welcome! Feel free to fork the repository and submit a pull request.
 
-## License
-This project is licensed under the MIT License.
+
 
 
