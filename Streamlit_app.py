@@ -3,7 +3,7 @@ import pickle
 import streamlit as st
 import warnings
 
-# Load the saved models
+# Loading the saved models
 failure_model = pickle.load(open("Machine Failure.pkl", 'rb'))
 failure_type_model = pickle.load(open("failure_type_model.pkl", 'rb'))
 
@@ -69,7 +69,7 @@ def validate_input(input_data):
 def main():
     st.title('Machine Failure Prediction Web App')
 
-    # Collect input data from the user
+    # Collecting input data from the user
     col1, col2 = st.columns(2)
 
     input_field_names = [
@@ -79,27 +79,27 @@ def main():
 
     input_data = {}
 
-    # Add dropdown for Type field
+    # Adding dropdown for Type field
     with col1:
         input_data['Type'] = st.selectbox("1. Type", options=list(type_full_forms.keys()), format_func=lambda x: type_full_forms[x])
 
-    # Add number inputs for the remaining fields
+    # Adding number inputs for the remaining fields
     for i, field_name in enumerate(input_field_names[1:], start=2):
         with col1 if i % 2 == 0 else col2:
             input_data[field_name] = st.number_input(f"{i}. {field_name} value", min_value=0.0, format="%.2f")
 
-    # Create placeholders for displaying the results and error messages
+    # Creating placeholders for displaying the results and error messages
     failure_prediction_result = ""
     failure_type_result = ""
     prediction_error_message = ""
 
-    # Initialize error_messages with an empty dictionary
+    # Initializing error_messages with an empty dictionary
     error_messages = {}
 
-    # Suppress the sklearn warning related to feature names
+    # Suppressing the sklearn warning related to feature names
     warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
 
-    # Check if the user has clicked the prediction button
+    # Checking if the user has clicked the prediction button
     if st.button('Predict Machine Failure'):
         error_messages = validate_input(list(input_data.values()))
 
@@ -116,7 +116,7 @@ def main():
                 else:
                     failure_type_result = f"Predicted Failure Type: {failure_type}"
 
-    # Display the results or error messages in the Streamlit app
+    # Displaying the results or error messages in the Streamlit app
     if error_messages:
         for field_name, error_message in error_messages.items():
             st.error(f"{field_name}: {error_message}")
@@ -129,12 +129,12 @@ def main():
         if failure_type_result:
             st.success(failure_type_result)
 
-    # Display failure type abbreviations and full forms
+    # Displaying failure type abbreviations and full forms
     st.write("### Failure Type Abbreviations and Full Forms")
     for abbrev, full_form in failure_type_full_forms.items():
         st.write(f"**{abbrev}**: {full_form}")
 
-    # Display Type column descriptions
+    # Displaying Type column descriptions
     st.write("### Type Column Descriptions")
     for key, description in type_full_forms.items():
         st.write(f"**{key}**: {description}")
